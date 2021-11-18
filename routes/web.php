@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileStorageResourceController;
+use App\Http\Controllers\EventResourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/file-storage', [FileStorageResourceController::class, 'create'])->name('fileUpload');
-Route::post('/file-storage/upload', [FileStorageResourceController::class, 'store'])->name('file-upload');
+Route::prefix('file-storage')
+    ->group(function () {
+        Route::get('/', [FileStorageResourceController::class, 'create'])->name('fileUpload');
+        Route::post('/upload', [FileStorageResourceController::class, 'store'])->name('file-upload');
+    });
+
+
+Route::prefix('registration')
+    ->name('registration')
+    ->group(function () {
+        Route::get('/new', [EventResourceController::class, 'create'])->name('.new');
+        Route::post('/store', [EventResourceController::class, 'store'])->name('.store');
+    });
