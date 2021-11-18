@@ -44,7 +44,10 @@ class NotifyRegisteredEventUser extends Notification
     {
         return (new MailMessage)
             ->success()
-            ->markdown('notifications.new-user-email');
+            ->markdown('notifications.new-user-email',[
+                'recipient' => $notifiable,
+                'url' => route('registration.new')
+            ]);
     }
 
     /**

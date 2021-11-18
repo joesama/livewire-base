@@ -12,6 +12,10 @@ class EventRegistration extends Model
 
     protected $guarded = ['id', 'email'];
 
+    protected $casts = [
+        'session' => 'array'
+    ];
+
     /**
      * Route notifications for the mail channel.
      * @param  \Illuminate\Notifications\Notification  $notification
