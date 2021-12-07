@@ -30,7 +30,7 @@ class NewEventUserEmailMarkdown extends Mailable
      */
     public function build()
     {
-        return $this->markdown('new.user.email')
+        return $this->markdown('notifications.new-user-email', ['recipient' => $this->recipient])
             ->with([
                 'url' => route('registration.new', ['newId' => $this->recipient->id])
             ])

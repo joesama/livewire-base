@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\UserEventRegistration;
 use App\Mail\Events\NewEventUserEmail;
-use App\Mail\NewEventUserEmailMarkdown;
+use App\Mail\Events\NewEventUserEmailMarkdown;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;

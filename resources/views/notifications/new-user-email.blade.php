@@ -10,7 +10,7 @@ The event can be access by url below.
 
 The session you have registered for:
 @component('mail::table')
-    | Sessions | {{ implode(',', $recipient->session)  }} |
+    | Sessions | {{ $recipient->session  }} |
     | ---------|-------------------------------------------|
 @endcomponent
 

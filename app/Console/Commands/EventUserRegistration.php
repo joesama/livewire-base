@@ -74,7 +74,7 @@ class EventUserRegistration extends Command
         $this->table(
             ['Name', 'Email', 'Notify Email', 'session'],
             [
-                [$model->name, $model->email, ($notify ? 'yes' : 'no'), implode(', ', $model->session)]
+                [$model->name, $model->email, ($notify ? 'yes' : 'no'), $model->session]
             ]
         );
 

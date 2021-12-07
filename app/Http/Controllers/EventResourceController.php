@@ -55,12 +55,15 @@ class EventResourceController extends Controller
         $model = EventRegistration::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
+            'avatar' => null,
+            'session' => null,
         ]);
 
         $file = $request->file('upload');
 
-        if ($file->isFile()) {
-            $filename = now()->format('His') . $file->getClientOriginalName();
+
+        if ($file && $file->isFile()) {
+            $filename = $file->getClientOriginalName();
 
             $path = $file->storeAs(
                 'book',
@@ -76,7 +79,7 @@ class EventResourceController extends Controller
 
         EventManager::dispatch($model);
 
-        return redirect(route('registration.new', ['newId' => $model->id]));
+        return response()->json($model);
     }
 
     /**

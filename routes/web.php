@@ -25,14 +25,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::prefix('file-storage')
+Route::middleware('auth')
+    ->prefix('file-storage')
     ->group(function () {
         Route::get('/', [FileStorageResourceController::class, 'create'])->name('fileUpload');
         Route::post('/upload', [FileStorageResourceController::class, 'store'])->name('file-upload');
     });
 
 
-Route::prefix('registration')
+Route::middleware('auth')
+    ->prefix('registration')
     ->name('registration')
     ->group(function () {
         Route::get('/new', [EventResourceController::class, 'create'])->name('.new');
